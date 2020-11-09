@@ -6,7 +6,7 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <div class="dabox" v-for="item in Anime" :key="item.id">
+      <div class="dabox" v-for="item in Anime" :key="item.id" @click="go(item.id)">
         <div class="box_left">
           <img :src="item.coverImage" />
         </div>
@@ -58,6 +58,14 @@ export default {
 
       this.Anime = [...this.Anime, ...res.data.list];
       this.loading = false;
+    },
+    go(id) {
+      this.$router.push({
+        name: "Details",
+        query: {
+          id: id,
+        },
+      });
     },
   },
 };
