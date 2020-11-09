@@ -2,6 +2,7 @@
   <div id="app">
     <router-view class="content" />
     <van-tabbar
+      route
       :fixed="false"
       v-model="active"
       active-color="#07c160"
@@ -14,7 +15,9 @@
         >影库</van-tabbar-item
       >
       <van-tabbar-item icon="video-o">详情</van-tabbar-item>
-      <van-tabbar-item icon="contact">个人中心</van-tabbar-item>
+      <van-tabbar-item :to="{ name: 'User' }" icon="contact"
+        >个人中心</van-tabbar-item
+      >
     </van-tabbar>
   </div>
 </template>

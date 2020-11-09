@@ -23,6 +23,11 @@ const routes = [{
     component: () => import('../views/Login.vue') //所在路径
   },
   {
+    path: "/details",
+    name: "Details",
+    component: () => import("../views/Details.vue"),
+  },
+  {
     path: "/classify",
     name: "Classify",
     component: () => import("../views/Classify.vue"),
@@ -53,6 +58,38 @@ const routes = [{
         component: () => import("../views/ClassifySubpage/Jl.vue"),
       },
     ],
+  },
+  {
+    path: "/user",
+    name: "User",
+    component: () => import("../views/User.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
+  {
+    path: "/key",
+    name: "Key",
+    component: () => import("../views/Key.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
+  {
+    path: "/person",
+    name: "Person",
+    component: () => import("../views/Person.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
+  {
+    path: "/collect",
+    name: "Collect",
+    component: () => import("../views/Collect.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
   },
 ];
 
