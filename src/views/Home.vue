@@ -8,15 +8,17 @@
         <p style="color: #cca4e3">B</p>
         <p style="color: #e4c6d0">J</p>
       </div>
-      <van-search
+      <!-- <van-search
         style="width: 50%"
         v-model="value"
         placeholder="瞄准?"
         type="info"
-      />
-      <!-- <div class="Inp">
-        <input type="text">
-      </div> -->
+      /> -->
+      <div class="Inp">
+        <van-icon name="search" class="icon" />
+        <input class="input" type="text" placeholder="瞄准？" />
+        <p>搜索</p>
+      </div>
 
       <div class="block">
         <el-avatar :size="30" :src="circleUrl"></el-avatar>
@@ -233,6 +235,40 @@ header {
 .header_left p {
   font-weight: 600;
   font-size: 1.3rem;
+}
+header .Inp {
+  height: 2rem;
+  width: 60%;
+  border: orangered 1px solid;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+.Inp .input {
+  width: 9rem;
+  display: inline-block;
+  font-size: 1rem;
+  text-indent: 1rem;
+  border: none;
+  outline: none;
+}
+.Inp .icon {
+  font-size: 1.5rem;
+  text-indent: 0.3rem;
+  font-weight: 700;
+  color: gray;
+}
+.Inp p {
+  width: 3rem;
+  height: 2rem;
+  color: #ffffff;
+  font-weight: 500;
+  text-align: center;
+  line-height: 2rem;
+  border-radius: 0 2rem 2rem 0;
+  background: red;
+  margin-top: 0.5px;
 }
 header .block {
   margin-top: 0.4rem;

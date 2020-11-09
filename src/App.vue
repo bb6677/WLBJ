@@ -14,7 +14,9 @@
         >影库</van-tabbar-item
       >
       <van-tabbar-item icon="video-o">详情</van-tabbar-item>
-      <van-tabbar-item icon="contact">个人中心</van-tabbar-item>
+      <van-tabbar-item :to="{ name: 'Person' }" icon="contact"
+        >个人中心</van-tabbar-item
+      >
     </van-tabbar>
   </div>
 </template>

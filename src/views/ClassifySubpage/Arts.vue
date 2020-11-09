@@ -1,23 +1,30 @@
 <template>
   <div class="Arts">
-    <div class="dabox" v-for="item in Arts" :key="item.id">
-      <div class="box_left">
-        <img :src="item.coverImage" />
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+    >
+      <div class="dabox" v-for="item in Arts" :key="item.id">
+        <div class="box_left">
+          <img :src="item.coverImage" />
+        </div>
+        <div class="box_right">
+          <h3>{{ item.name.substr(item.name, 9) }}</h3>
+          <van-rate
+            class="XX"
+            v-model="value"
+            allow-half
+            void-icon="star"
+            void-color="#eee"
+          />
+          <p>
+            <a href="">{{ item.desc }}</a>
+          </p>
+        </div>
       </div>
-      <div class="box_right">
-        <h3>{{ item.name.substr(item.name, 9) }}</h3>
-        <van-rate
-          class="XX"
-          v-model="value"
-          allow-half
-          void-icon="star"
-          void-color="#eee"
-        />
-        <p>
-          <a href="">{{ item.desc }}</a>
-        </p>
-      </div>
-    </div>
+    </van-list>
   </div>
 </template>
 
@@ -27,14 +34,31 @@ export default {
   name: "Arts",
   data() {
     return {
-      value: 4,
+      value: 4.5,
       Arts: [],
+      loading: false,
+      finished: false,
+      page: 1,
     };
   },
-  async created() {
-    const res = await AllClasstify({ category: 4 });
-    console.log(res.data.list);
-    this.Arts = res.data.list;
+  async created() {},
+  methods: {
+    onLoad() {
+      this.loadData();
+    },
+    async loadData() {
+      this.loading = true;
+      const res = await AllClasstify({ category: 4, page: this.page });
+      console.log(res.data.list);
+      this.page = res.data.page;
+      if (this.page < 6) {
+        this.page++;
+      } else {
+        this.finished = true;
+      }
+      this.Arts = [...this.Arts, ...res.data.list];
+      this.loading = false;
+    },
   },
 };
 </script>
