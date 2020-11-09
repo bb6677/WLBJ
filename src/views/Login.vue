@@ -1,8 +1,9 @@
 <template>
    <!-- 登录 -->
   <div class="reg">
+    <p>请先登录</p>
     <!-- logo图 -->
-    <img src="" alt="" />
+    <img style="width:80%;" src="../assets/timg.jpg" alt="" />
     <!-- 引入vant模板 -->
     <van-form @submit="onSubmit">
       <van-field
@@ -28,25 +29,38 @@
       </div>
     </van-form>
     <!-- ：to=“” 跳转至相应的页面-->
-    <router-link :to="{name: 'Reg'}">已注册>请登录</router-link>
+    <router-link :to="{name: 'Reg'}">没有账号请>注册</router-link>
   </div>
 </template>
   
 <script>
-// import { Notify } from 'vant' 登录页不需要判断密码一致性
+import { Notify } from "vant";
+import { loginAPI } from "@/services/auth";
+import { setToken } from "@/utils/tools";
 export default {
-   data(){
-     return{
-       username:'',
-       passworrd:'',
-     }
-   } ,
-  methods:{
-    onSubmit(){
-      
-    }
-  }
-}
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    async onSubmit(values) {
+      const u = await loginAPI(values);
+      if (u.code === 1) {
+        setToken(u.token);
+        this.$router.push({
+          name: "Home",
+        });
+      } else {
+        Notify({
+          type: "warning",
+          message: u.info,
+        });
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -55,5 +69,11 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: rgb(213, 236, 229);
+  border-radius: 5px 5px;
+}
+p{
+  color: rgb(26, 209, 148);
+  font-size: 20px;
 }
 </style>

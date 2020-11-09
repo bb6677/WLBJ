@@ -1,13 +1,27 @@
+
 import Vue from "vue";
 import VueRouter from "vue-router";
-
+import {
+  isLogined
+} from "../utils/tools"
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../views/Home.vue"),
+  component: () => import("../views/Home.vue"),
+  
+  },
+  { //注册页面路由文件
+    path: 'reg',
+    name: 'Reg',
+    component: () => import('../views/Reg.vue') //所在路径
+  },
+  { //登录页面路由文件
+    path: 'login',
+    name: 'Login',
+    component: () => import('../views/Login.vue') //所在路径
   },
   {
     path: "/details",
@@ -18,8 +32,8 @@ const routes = [
     path: "/classify",
     name: "Classify",
     component: () => import("../views/Classify.vue"),
-    children: [
-      {
+   
+    children: [{
         path: "/mv",
         name: "Mv",
         component: () => import("../views/ClassifySubpage/Mv.vue"),
@@ -82,6 +96,20 @@ const routes = [
 
 const router = new VueRouter({
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.needLogin) {
+    if (isLogined()) {
+      next();
+    } else {
+      next({
+        name: "Login"
+      });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
