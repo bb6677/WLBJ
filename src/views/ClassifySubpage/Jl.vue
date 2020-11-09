@@ -1,23 +1,30 @@
 <template>
   <div class="Jl">
-    <div class="dabox" v-for="item in Jl" :key="item.id">
-      <div class="box_left">
-        <img :src="item.coverImage" />
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+    >
+      <div class="dabox" v-for="item in Jl" :key="item.id">
+        <div class="box_left">
+          <img :src="item.coverImage" />
+        </div>
+        <div class="box_right">
+          <h3>{{ item.name }}</h3>
+          <van-rate
+            class="XX"
+            v-model="value"
+            allow-half
+            void-icon="star"
+            void-color="#eee"
+          />
+          <p>
+            <a href="">{{ item.desc }}</a>
+          </p>
+        </div>
       </div>
-      <div class="box_right">
-        <h3>{{ item.name }}</h3>
-        <van-rate
-          class="XX"
-          v-model="value"
-          allow-half
-          void-icon="star"
-          void-color="#eee"
-        />
-        <p>
-          <a href="">{{ item.desc }}</a>
-        </p>
-      </div>
-    </div>
+    </van-list>
   </div>
 </template>
 
@@ -27,14 +34,31 @@ export default {
   name: "Jl",
   data() {
     return {
-      value: 4,
+      value: 3,
       Jl: [],
+      loading: false,
+      finished: false,
+      page: 1,
     };
   },
-  async created() {
-    const res = await AllClasstify({ category: 5 });
-    console.log(res.data.list);
-    this.Jl = res.data.list;
+  async created() {},
+  methods: {
+    onLoad() {
+      this.loadData();
+    },
+    async loadData() {
+      this.loading = true;
+      const res = await AllClasstify({ category: 5, page: this.page });
+      console.log(res.data.list);
+      this.page = res.data.page;
+      if (this.page < 6) {
+        this.page++;
+      } else {
+        this.finished = true;
+      }
+      this.Jl = [...this.Jl, ...res.data.list];
+      this.loading = false;
+    },
   },
 };
 </script>
