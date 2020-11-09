@@ -67,7 +67,7 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Mv" :key="item.id">
+            <div class="Dy" v-for="item in Mv" :key="item.id"  @click="go(item.id)">
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name }}</h4>
               <p>{{ item.desc }}</p>
@@ -85,7 +85,7 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Anime" :key="item.id">
+            <div class="Dy" v-for="item in Anime" :key="item.id"  @click="go(item.id)">
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name }}</h4>
               <p>{{ item.desc }}</p>
@@ -103,7 +103,7 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Tv" :key="item.id">
+            <div class="Dy" v-for="item in Tv" :key="item.id"  @click="go(item.id)">
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name }}</h4>
               <p>{{ item.desc }}</p>
@@ -121,7 +121,7 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Arts" :key="item.id">
+            <div class="Dy" v-for="item in Arts" :key="item.id"  @click="go(item.id)">
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name.substr(item.name, 9) }}</h4>
               <p>{{ item.desc }}</p>
@@ -139,7 +139,7 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Jl" :key="item.id">
+            <div class="Dy" v-for="item in Jl" :key="item.id"  @click="go(item.id)">
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name.substr(item.name, 9) }}</h4>
               <p>{{ item.desc }}</p>
@@ -195,7 +195,16 @@ export default {
     const res5 = await AllClasstify({ category: 5 });
     this.Jl = res5.data.list;
   },
-  methods: {},
+  methods: {
+    go(id) {
+      this.$router.push({
+        name: "Details",
+        query: {
+          id: id,
+        },
+      });
+    },
+  },
   components: {},
 };
 </script>
