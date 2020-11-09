@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .van-form {
   margin-top: 1.5rem;
 }

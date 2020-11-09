@@ -41,6 +41,38 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/user",
+    name: "User",
+    component: () => import("../views/User.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
+  {
+    path: "/key",
+    name: "Key",
+    component: () => import("../views/Key.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
+  {
+    path: "/person",
+    name: "Person",
+    component: () => import("../views/Person.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
+  {
+    path: "/collect",
+    name: "Collect",
+    component: () => import("../views/Collect.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
 ];
 
 const router = new VueRouter({

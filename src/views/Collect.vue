@@ -8,5 +8,8 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
+.van-cell {
+  font-size: 1.5rem;
+}
 </style>
