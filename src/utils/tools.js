@@ -13,7 +13,7 @@ export function setToken(val) {
 }
 
 export function getToken() {
-  localStorage.getItem("token")
+  return localStorage.getItem("token")
 }
 
 export function removeToken() {

@@ -50,12 +50,12 @@ export default {
       if (u.code === 1) {
         setToken(u.token);
         this.$router.push({
-          name: "Home",
+          name: "User",
         });
       } else {
         Notify({
           type: "warning",
-          message: u.info,
+          message: u.message,
         });
       }
     },

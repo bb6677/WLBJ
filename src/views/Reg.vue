@@ -67,7 +67,7 @@ export default {
       if (u.code === 1) {
         setToken(u.token);
         this.$router.push({
-          name: "Home",
+          name: "Login",
         });
       } else {
         
@@ -76,7 +76,7 @@ export default {
           message: u.info,
         });
       }
-      // console.log(u);
+       console.log(u);
     },
   },
 };
