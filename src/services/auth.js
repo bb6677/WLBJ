@@ -1,4 +1,4 @@
-import { post, get } from "@/utils/request";
+import { post, get ,put} from "@/utils/request";
 // import { get } from "core-js/fn/dict";
 
 export function regAPI(user) {
@@ -13,6 +13,10 @@ export function userInfoAPI() {
   return get("/api/v1/users/info");
 }
 
-export function keyAPI(data) {
-  return post("/api/v1/users/change_pwd", data);
+export function keyAPI(user) {
+  return post("/api/v1/users/change_pwd", user);
+}
+
+export function personAPI(user) {
+  return put("/api/v1/users/change_pwd", user);
 }

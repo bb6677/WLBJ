@@ -23,10 +23,10 @@
           :title="movie.product.name"
           :thumb="movie.product.coverImage"
         >
-          <!-- <template #footer>
-          <van-button size="mini" @click="rm(movie)">删除</van-button> -->
+          <template #footer>
+          <van-button size="mini" @click="rm(movie)">删除</van-button>
           <!-- <van-button size="mini">按钮</van-button> -->
-          <!-- </template> -->
+          </template>
         </van-card>
       </div>
     </div>

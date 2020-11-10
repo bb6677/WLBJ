@@ -11,7 +11,12 @@
 
     <h1>{{ user.userName }}</h1>
     <div class="content" route>
-      <van-cell to="/collect" title="我的收藏" is-link icon="like" />
+      <van-cell
+        :to="{ name: 'Collect' }"
+        title="我的收藏"
+        is-link
+        icon="like"
+      />
       <van-cell
         :to="{ name: 'Key', query: { pwd: $route.query.pwd } }"
         title="修改密码"
@@ -28,7 +33,7 @@
 
 <script>
 import { userInfoAPI } from "@/services/auth";
-import { removeToken } from "@/utils/tools";
+// import { removeToken } from "@/utils/tools";
 export default {
   name: "User",
   data() {
@@ -37,8 +42,9 @@ export default {
     };
   },
   async created() {
-    const res = await userInfoAPI();
+    let res = await userInfoAPI();
     console.log(res);
+    // res = res.data;
     this.user = res;
     console.log(this.user.password);
   },
@@ -47,7 +53,7 @@ export default {
       this.$router.push({
         name: "Login",
       });
-      removeToken();
+      // removeToken();
     },
   },
 };

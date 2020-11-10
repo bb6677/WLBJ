@@ -9,11 +9,12 @@ export function isLogined() {
 }
 
 export function setToken(val) {
-  localStorage.setItem("token",val)
+  localStorage.setItem("token", val);
 }
 
+
 export function getToken() {
-  localStorage.getItem("token")
+  return localStorage.getItem("token")
 }
 
 export function removeToken() {

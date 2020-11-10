@@ -46,11 +46,12 @@ export default {
   },
   methods: {
     async onSubmit(values) {
-      const u = await loginAPI(values);
+    const res = await loginAPI(values);
+      let u =res.data
       if (u.code === 1) {
         setToken(u.token);
         this.$router.push({
-          name: "Home",
+          name: "User",
         });
       } else {
         Notify({
