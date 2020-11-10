@@ -6,7 +6,7 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <div class="dabox" v-for="item in Mv" :key="item.veiws">
+      <div class="dabox" v-for="item in Mv" :key="item.veiws" @click="go(item.id)">
         <div class="box_left">
           <img :src="item.coverImage" />
         </div>
