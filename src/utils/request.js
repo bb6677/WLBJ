@@ -22,7 +22,7 @@ const instance = axios.create({
 
 // instance.interceptors.response.use(
 //   function(response) {
-//     return response.data;
+//     return response;
 //   },
 //   function(error) {
 //     if (error.response && error.response.status === 401) {
