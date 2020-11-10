@@ -65,7 +65,7 @@ export default {
           oldPassword: this.oldpassword,
           newPassword: this.newpassword,
         });
-        if (u.code === "success") {
+        if (u.code === 1) {
           Notify({
             type: "success",
             message: "修改成功",

@@ -2,12 +2,13 @@
   <!-- <h1>xiangq</h1> -->
 
   <div>
-    <router-link :to="{ name: 'Home' }">
-      <van-nav-bar :fixed="false" title="电影详情" left-arrow>
-        <template #right> </template> </van-nav-bar
-    ></router-link>
+    <van-row type="flex" justify="space-between" style="margin-top:.5rem">
+      <van-col @click="$router.back(-1)" span="6" left-arrow style="margin-left:.5rem" ><van-icon name="arrow-left" /></van-col>
+      <van-col span="6">电影详情</van-col>
+      <van-col span="6"></van-col>
+    </van-row>
 
-    <video style="width:100%" controls autoplay :src="movie.playUrl"></video>
+    <video style="width:100%;margin-top:1rem" controls autoplay :src="movie.playUrl"></video>
 
     <!-- <h1>
       {{ movie.name }}
@@ -16,17 +17,14 @@
     </h1> -->
 
     <van-row type="flex" justify="space-between" style="margin-top:2rem">
-      <van-col span="12"
-        ><a href="" style=" margin-left:1rem; font-size:2rem;color:#000000">{{
+      <van-col span="18"
+        ><a href="" style=" margin-left:1rem; font-size:1.2rem;color:#000000;line-height:1;">{{
           movie.name
         }}</a>
       </van-col>
       <!-- <van-col span="6">span: 6</van-col> -->
       <van-col span="6"
-        ><van-icon
-          @click="buy(movie)"
-          size="2rem"
-          name="like"
+        ><van-icon @click="buy(movie)" size="2rem" name="like"
       /></van-col>
     </van-row>
 
@@ -82,4 +80,7 @@ export default {
 </script>
 
 <style scoped>
+  .van-icon-arrow-left{
+    width: 100%;
+  }
 </style>
