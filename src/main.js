@@ -8,10 +8,11 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import { NoticeBar } from "vant";
 import { Icon } from "vant";
+import { Toast } from 'vant';
 
 Vue.use(NoticeBar);
 Vue.use(Icon);
-
+Vue.use(Toast);
 import { serverUrl } from "@/utils/tools";
 
 Vue.filter("dalImg", (val) => {

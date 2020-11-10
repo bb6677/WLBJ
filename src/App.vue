@@ -12,7 +12,9 @@
         >首页</van-tabbar-item
       >
       <van-tabbar-item :to="{ name: 'Mv' }" icon="apps-o">影库</van-tabbar-item>
-      <van-tabbar-item icon="video-o">详情</van-tabbar-item>
+      <van-tabbar-item :to="{ name: 'Re' }" icon="video-o"
+        >热映</van-tabbar-item
+      >
       <van-tabbar-item :to="{ name: 'User' }" icon="contact"
         >个人中心</van-tabbar-item
       >
