@@ -14,14 +14,11 @@
         <input class="input" type="text" placeholder="瞄准？" />
         <p>搜索</p>
       </div>
-
-      <div class="block">
-        <el-avatar
-          :size="30"
-          :src="circleUrl"
-          :to="{ name: 'User' }"
-        ></el-avatar>
-      </div>
+      <router-link :to="{ name: 'User' }">
+        <div class="block">
+          <el-avatar :size="30" :src="circleUrl"></el-avatar>
+        </div>
+      </router-link>
     </header>
 
     <!-- 中间部分的展示 -->
@@ -234,6 +231,8 @@ export default {
   components: {},
 };
 </script>
+
+
 <style scoped>
 html,
 body {
