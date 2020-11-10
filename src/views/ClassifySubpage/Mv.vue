@@ -78,6 +78,14 @@ export default {
       this.Mv = [...this.Mv, ...res.list];
       this.loading = false;
     },
+    go(id) {
+      this.$router.push({
+        name: "Details",
+        query: {
+          id: id,
+        },
+      });
+    },
   },
 };
 </script>
