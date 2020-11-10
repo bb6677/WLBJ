@@ -2,6 +2,7 @@
   <div id="app">
     <router-view class="content" />
     <van-tabbar
+      route
       :fixed="false"
       v-model="active"
       active-color="#07c160"

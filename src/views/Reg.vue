@@ -1,8 +1,9 @@
 <template>
   <!-- 注册 -->
   <div class="reg">
+    <p>注册专属账号</p>
     <!-- logo图 -->
-    <img src="" alt="" />
+    <img style="width: 80%" src="../assets/timg.jpg" alt="" />
     <!-- 引入vant模板 -->
     <van-form @submit="onSubmit">
       <van-field
@@ -10,16 +11,17 @@
         name="userName"
         label="用户名"
         placeholder="用户名"
-        :rules="[{ required: true, message: '请填写用户名' }]"/>
-
+        :rules="[{ required: true, message: '请填写用户名' }]"
+      />
+      <!-- <div style="margin: 16px"> -->
       <van-field
         v-model="password"
         type="password"
         name="password"
         label="密码"
         placeholder="密码"
-        :rules="[{ required: true, message: '请填写密码' }]"/>
-      <div style="margin: 16px">
+        :rules="[{ required: true, message: '请填写密码' }]"
+      />
 
       <van-field
         v-model="repwd"
@@ -27,48 +29,71 @@
         name="repwd"
         label="确认密码"
         placeholder="重新输入密码"
-        :rules="[{ required: true, message: '请填写密码' }]"/>
-      
-        <van-button round block type="info" native-type="submit">
-          提交
-        </van-button>
-      </div>
+        :rules="[{ required: true, message: '请填写密码' }]"
+      />
+
+      <van-button round block type="info" native-type="submit">
+        注册
+      </van-button>
+      <!-- </div> -->
     </van-form>
     <!-- ：to=“” 跳转至相应的页面-->
-    <router-link :to="{name: 'Login'}">已注册>请前往登录</router-link>
+    <router-link :to="{ name: 'Login' }">注册完成请前往>登录</router-link>
   </div>
 </template>
 
 <script>
-import { Notify } from 'vant';//导入vant中的Notify
+import { Notify } from "vant";
+import { regAPI } from "@/services/auth";
+import { setToken } from "@/utils/tools";
 export default {
-  data(){
-    return{
-      username:'',
-      password:'',
-      repwd:'',
-    }
+  data() {
+    return {
+      username: "",
+      repwd: "",
+      password: "",
+    };
   },
-  methods:{
-    onSubmit(values){
-      if(this.password!=this.repwd){ //判断两次密码是否一致 不一致返回问题
+  methods: {
+    async onSubmit(values) {
+      if (this.password != this.repwd) {
         Notify({
-          type:'warning',
-          message:'密码不一致,请重试',
-        })
+          type: "warning",
+          message: "两次输入的密码不一致",
+        });
+        return;
       }
       console.log(values);
-    }
-  }
+      const u = await regAPI(values);
+      // let u =res.data
+      if (u.code === 1) {
+        setToken(u.token);
+        this.$router.push({
+          name: "Login",
+        });
+      } else {
+        Notify({
+          type: "warning",
+          message: u.info,
+        });
+      }
+      console.log(u);
+    },
+  },
 };
 </script>
-// 样式属性
+
 <style scoped>
-.reg{
+.reg {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: rgb(213, 236, 229);
+}
+p {
+  color: rgb(26, 209, 148);
+  font-size: 20px;
 }
 </style>
 

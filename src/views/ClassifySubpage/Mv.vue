@@ -6,7 +6,12 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <div class="dabox" v-for="item in Mv" :key="item.veiws">
+      <div
+        class="dabox"
+        v-for="item in Mv"
+        :key="item.veiws"
+        @click="go(item.id)"
+      >
         <div class="box_left">
           <img :src="item.coverImage" />
         </div>
@@ -62,14 +67,15 @@ export default {
       // console.log(res.data);
       // console.log(res.data.list);
       // console.log(res.data.page);
-      this.page = res.data.page;
+      console.log(res.page);
+      this.page = res.page;
       if (this.page < 6) {
         this.page++;
       } else {
         this.finished = true;
       }
 
-      this.Mv = [...this.Mv, ...res.data.list];
+      this.Mv = [...this.Mv, ...res.list];
       this.loading = false;
     },
   },

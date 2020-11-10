@@ -36,7 +36,6 @@
 </template>
 
 <script>
-// import { userInfoAPI } from "@/services/auth";
 import { Notify } from "vant";
 import { keyAPI } from "@/services/auth";
 export default {
@@ -48,36 +47,46 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      if (this.newpassword != this.repwd) {
+    async onSubmit() {
+      if (this.oldpassword != this.$route.query.pwd) {
         Notify({
-          type: "warning",
-          message: "两次输入的密码不一致",
-        });
-        return;
-      }
-      const u = keyAPI({
-        oldPassword: this.oldPassword,
-        newPassword: this.newPassword,
-      });
-      if (u.code === "success") {
-        this.$router.push({
-          name: "User",
-          query: this.query.pwd,
+          type: "danger",
+          message: "与旧密码不一致",
         });
       } else {
-        Notify({
-          type: "warning",
-          message: u.message,
+        if (this.newpassword != this.repwd) {
+          Notify({
+            type: "warning",
+            message: "两次输入的密码不一致",
+          });
+          return;
+        }
+        const u = await keyAPI({
+          oldPassword: this.oldpassword,
+          newPassword: this.newpassword,
         });
+        if (u.code === 1) {
+          Notify({
+            type: "success",
+            message: "修改成功",
+          });
+          localStorage.setItem("pwd", this.newPassword);
+          this.$router.push({
+            name: "User",
+          });
+        } else {
+          Notify({
+            type: "danger",
+            message: "修改失败",
+          });
+        }
       }
-      console.log(u);
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .van-form {
   margin-top: 1.5rem;
 }

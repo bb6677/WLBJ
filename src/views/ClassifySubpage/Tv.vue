@@ -6,7 +6,7 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <div class="dabox" v-for="item in Tv" :key="item.id">
+      <div class="dabox" v-for="item in Tv" :key="item.id" @click="go(item.id)">
         <div class="box_left">
           <img :src="item.coverImage" />
         </div>
@@ -49,14 +49,14 @@ export default {
     async loadData() {
       this.loading = true;
       const res = await AllClasstify({ category: 3, page: this.page });
-      console.log(res.data.list);
-      this.page = res.data.page;
+
+      this.page = res.page;
       if (this.page < 6) {
         this.page++;
       } else {
         this.finished = true;
       }
-      this.Tv = [...this.Tv, ...res.data.list];
+      this.Tv = [...this.Tv, ...res.list];
       this.loading = false;
     },
   },

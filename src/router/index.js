@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-
+import { isLogined } from "../utils/tools";
 Vue.use(VueRouter);
 
 const routes = [
@@ -14,22 +14,24 @@ const routes = [
     },
   },
   {
-    path: "/person",
-    name: "Person",
-    component: () => import("../views/Person.vue"),
-    meta: {
-      keeplive: true,
-      index: 2,
-    },
+    path: "/reg",
+    name: "Reg",
+    component: () => import("../views/Reg.vue"),
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login.vue"),
+  },
+  {
+    path: "/details",
+    name: "Details",
+    component: () => import("../views/Details.vue"),
   },
   {
     path: "/classify",
     name: "Classify",
     component: () => import("../views/Classify.vue"),
-    meta: {
-      keeplive: true,
-      index: 1,
-    },
     children: [
       {
         path: "/mv",
@@ -58,10 +60,56 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/user",
+    name: "User",
+    component: () => import("../views/User.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
+  {
+    path: "/key",
+    name: "Key",
+    component: () => import("../views/Key.vue"),
+    // meta: {
+    //   needLogin: true, //访问时需要登录才能访问
+    // },
+  },
+  {
+    path: "/person",
+    name: "Person",
+    component: () => import("../views/Person.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
+  {
+    path: "/collect",
+    name: "Collect",
+    component: () => import("../views/Collect.vue"),
+    meta: {
+      needLogin: true, //访问时需要登录才能访问
+    },
+  },
 ];
 
 const router = new VueRouter({
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.needLogin) {
+    if (isLogined()) {
+      next();
+    } else {
+      next({
+        name: "Login",
+      });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
