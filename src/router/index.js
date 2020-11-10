@@ -5,19 +5,31 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     component: () => import("../views/Home.vue"),
+    meta: {
+      keeplive: true,
+      index: 0,
+    },
   },
   {
     path: "/person",
     name: "Person",
     component: () => import("../views/Person.vue"),
+    meta: {
+      keeplive: true,
+      index: 2,
+    },
   },
   {
     path: "/classify",
     name: "Classify",
     component: () => import("../views/Classify.vue"),
+    meta: {
+      keeplive: true,
+      index: 1,
+    },
     children: [
       {
         path: "/mv",

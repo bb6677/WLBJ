@@ -8,12 +8,7 @@
         <p style="color: #cca4e3">B</p>
         <p style="color: #e4c6d0">J</p>
       </div>
-      <!-- <van-search
-        style="width: 50%"
-        v-model="value"
-        placeholder="瞄准?"
-        type="info"
-      /> -->
+
       <div class="Inp">
         <van-icon name="search" class="icon" />
         <input class="input" type="text" placeholder="瞄准？" />
