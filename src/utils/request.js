@@ -1,8 +1,8 @@
 import axios from "axios";
 
-import { serverUrl } from "../utils/tools";
-import { getToken } from "../utils/tools";
-import { removeToken } from "../utils/tools";
+import { serverUrl } from "@/utils/tools";
+import { getToken } from "@/utils/tools";
+import { removeToken } from "@/utils/tools";
 
  import { Notify } from "vant";
 

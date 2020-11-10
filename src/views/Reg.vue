@@ -23,13 +23,13 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
   
-      <!-- <van-field
+      <van-field
         v-model="repwd"
         type="password"
         name="repwd"
         label="确认密码"
         placeholder="重新输入密码"
-        :rules="[{ required: true, message: '请填写密码' }]"/> -->
+        :rules="[{ required: true, message: '请填写密码' }]"/>
 
       <van-button round block type="info" native-type="submit">
         注册
@@ -49,28 +49,28 @@ export default {
   data() {
     return {
       username: "",
-      // repwd: "",
+      repwd: "",
       password: "",
     };
   },
   methods: {
     async onSubmit(values) {
-      // if (this.password != this.repwd) {
-      //   Notify({
-      //     type: "warning",
-      //     message: "两次输入的密码不一致",
-      //   });
-      //   return;
-      // }
-      // console.log(values);
-      const u = await regAPI(values);
+      if (this.password != this.repwd) {
+        Notify({
+          type: "warning",
+          message: "两次输入的密码不一致",
+        });
+        return;
+      }
+      console.log(values);
+      const res = await regAPI(values);
+      let u =res.data
       if (u.code === 1) {
         setToken(u.token);
         this.$router.push({
           name: "Login",
         });
       } else {
-        
         Notify({
           type: "warning",
           message: u.info,
