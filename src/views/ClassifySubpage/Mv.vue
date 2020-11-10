@@ -50,11 +50,20 @@ export default {
   // async created() {},
   mounted() {
     window.onscroll = this.scrollToTop;
+    
   },
   methods: {
     onLoad() {
       console.log("开始加载数据");
       this.loadData();
+    },
+    go(id) {
+      this.$router.push({
+        name: "Details",
+        query: {
+          id: id,
+        },
+      });
     },
 
     /* 加载数据 */

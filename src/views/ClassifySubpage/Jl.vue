@@ -9,7 +9,7 @@
       <div class="dabox" v-for="item in Jl" :key="item.id" @click="go(item.id)">
         <div class="box_left">
           <img :src="item.coverImage" />
-        </div>
+        </div> 
         <div class="box_right">
           <h3>{{ item.name }}</h3>
           <van-rate
@@ -46,6 +46,7 @@ export default {
     onLoad() {
       this.loadData();
     },
+    
     async loadData() {
       this.loading = true;
       const res = await AllClasstify({ category: 5, page: this.page });
@@ -58,6 +59,14 @@ export default {
       }
       this.Jl = [...this.Jl, ...res.data.list];
       this.loading = false;
+    },
+    go(id) {
+      this.$router.push({
+        name: "Details",
+        query: {
+          id: id,
+        },
+      });
     },
   },
 };

@@ -46,6 +46,7 @@ export default {
     onLoad() {
       this.loadData();
     },
+    
     async loadData() {
       this.loading = true;
       const res = await AllClasstify({ category: 2, page: this.page });

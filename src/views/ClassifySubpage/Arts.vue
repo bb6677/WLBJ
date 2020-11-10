@@ -46,6 +46,14 @@ export default {
     onLoad() {
       this.loadData();
     },
+    go(id) {
+      this.$router.push({
+        name: "Details",
+        query: {
+          id: id,
+        },
+      });
+    },
     async loadData() {
       this.loading = true;
       const res = await AllClasstify({ category: 4, page: this.page });
