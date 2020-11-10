@@ -8,6 +8,10 @@ const routes = [
     path: "/",
     name: "Home",
     component: () => import("../views/Home.vue"),
+    meta: {
+      keeplive: true,
+      index: 0,
+    },
   },
   {
     path: "/reg",
@@ -34,7 +38,6 @@ const routes = [
     path: "/classify",
     name: "Classify",
     component: () => import("../views/Classify.vue"),
-
     children: [
       {
         path: "/mv",

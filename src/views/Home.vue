@@ -8,12 +8,7 @@
         <p style="color: #cca4e3">B</p>
         <p style="color: #e4c6d0">J</p>
       </div>
-      <!-- <van-search
-        style="width: 50%"
-        v-model="value"
-        placeholder="瞄准?"
-        type="info"
-      /> -->
+
       <div class="Inp">
         <van-icon name="search" class="icon" />
         <input class="input" type="text" placeholder="瞄准？" />
@@ -21,7 +16,11 @@
       </div>
 
       <div class="block">
-        <el-avatar :size="30" :src="circleUrl"></el-avatar>
+        <el-avatar
+          :size="30"
+          :src="circleUrl"
+          :to="{ name: 'User' }"
+        ></el-avatar>
       </div>
     </header>
 
@@ -69,7 +68,12 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Mv" :key="item.id"  @click="go(item.id)">
+            <div
+              class="Dy"
+              v-for="item in Mv"
+              :key="item.id"
+              @click="go(item.id)"
+            >
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name }}</h4>
               <p>{{ item.desc }}</p>
@@ -87,7 +91,12 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Anime" :key="item.id"  @click="go(item.id)">
+            <div
+              class="Dy"
+              v-for="item in Anime"
+              :key="item.id"
+              @click="go(item.id)"
+            >
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name }}</h4>
               <p>{{ item.desc }}</p>
@@ -105,7 +114,12 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Tv" :key="item.id"  @click="go(item.id)">
+            <div
+              class="Dy"
+              v-for="item in Tv"
+              :key="item.id"
+              @click="go(item.id)"
+            >
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name }}</h4>
               <p>{{ item.desc }}</p>
@@ -123,7 +137,12 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Arts" :key="item.id"  @click="go(item.id)">
+            <div
+              class="Dy"
+              v-for="item in Arts"
+              :key="item.id"
+              @click="go(item.id)"
+            >
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name.substr(item.name, 9) }}</h4>
               <p>{{ item.desc }}</p>
@@ -141,7 +160,12 @@
             </router-link>
           </div>
           <div class="dianying">
-            <div class="Dy" v-for="item in Jl" :key="item.id"  @click="go(item.id)">
+            <div
+              class="Dy"
+              v-for="item in Jl"
+              :key="item.id"
+              @click="go(item.id)"
+            >
               <img :src="item.coverImage | dalImg" />
               <h4>{{ item.name.substr(item.name, 9) }}</h4>
               <p>{{ item.desc }}</p>
@@ -182,20 +206,20 @@ export default {
   async created() {
     /* 电影 */
     const res1 = await AllClasstify({ category: 1 });
-    console.log(res1.data.list);
-    this.Mv = res1.data.list;
+    console.log(res1);
+    this.Mv = res1.list;
     /* 动漫 */
     const res2 = await AllClasstify({ category: 2 });
-    this.Anime = res2.data.list;
+    this.Anime = res2.list;
     /* 电视剧 */
     const res3 = await AllClasstify({ category: 3 });
-    this.Tv = res3.data.list;
+    this.Tv = res3.list;
     /* 综艺 */
     const res4 = await AllClasstify({ category: 4 });
-    this.Arts = res4.data.list;
+    this.Arts = res4.list;
     /* 纪录片 */
     const res5 = await AllClasstify({ category: 5 });
-    this.Jl = res5.data.list;
+    this.Jl = res5.list;
   },
   methods: {
     go(id) {

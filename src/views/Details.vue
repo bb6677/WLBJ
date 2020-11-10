@@ -2,13 +2,24 @@
   <!-- <h1>xiangq</h1> -->
 
   <div>
-    <van-row type="flex" justify="space-between" style="margin-top:.5rem">
-      <van-col @click="$router.back(-1)" span="6" left-arrow style="margin-left:.5rem" ><van-icon name="arrow-left" /></van-col>
+    <van-row type="flex" justify="space-between" style="margin-top: 0.5rem">
+      <van-col
+        @click="$router.back(-1)"
+        span="6"
+        left-arrow
+        style="margin-left: 0.5rem"
+        ><van-icon name="arrow-left"
+      /></van-col>
       <van-col span="6">电影详情</van-col>
       <van-col span="6"></van-col>
     </van-row>
 
-    <video style="width:100%;margin-top:1rem" controls autoplay :src="movie.playUrl"></video>
+    <video
+      style="width: 100%; margin-top: 1rem"
+      controls
+      autoplay
+      :src="movie.playUrl"
+    ></video>
 
     <!-- <h1>
       {{ movie.name }}
@@ -16,11 +27,18 @@
       <van-tag @click="buy(movie)" round type="primary">加入收藏</van-tag>
     </h1> -->
 
-    <van-row type="flex" justify="space-between" style="margin-top:2rem">
+    <van-row type="flex" justify="space-between" style="margin-top: 2rem">
       <van-col span="18"
-        ><a href="" style=" margin-left:1rem; font-size:1.2rem;color:#000000;line-height:1;">{{
-          movie.name
-        }}</a>
+        ><a
+          href=""
+          style="
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            color: #000000;
+            line-height: 1;
+          "
+          >{{ movie.name }}</a
+        >
       </van-col>
       <!-- <van-col span="6">span: 6</van-col> -->
       <van-col span="6"
@@ -28,7 +46,7 @@
       /></van-col>
     </van-row>
 
-    <div class="van-multi-ellipsis--l3" style="margin-top:3rem">
+    <div class="van-multi-ellipsis--l3" style="margin-top: 3rem">
       {{ movie.desc }}
     </div>
     <!-- <p>{{ movie.desc }}</p> -->
@@ -49,7 +67,7 @@ export default {
   async created() {
     if (this.$route.query.id) {
       await get("/api/v1/movies/" + this.$route.query.id).then((res) => {
-        this.movie = res.data;
+        this.movie = res;
       });
     }
 
@@ -80,7 +98,7 @@ export default {
 </script>
 
 <style scoped>
-  .van-icon-arrow-left{
-    width: 100%;
-  }
+.van-icon-arrow-left {
+  width: 100%;
+}
 </style>

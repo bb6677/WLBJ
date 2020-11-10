@@ -6,7 +6,12 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <div class="dabox" v-for="item in Mv" :key="item.veiws" @click="go(item.id)">
+      <div
+        class="dabox"
+        v-for="item in Mv"
+        :key="item.veiws"
+        @click="go(item.id)"
+      >
         <div class="box_left">
           <img :src="item.coverImage" />
         </div>
@@ -25,9 +30,9 @@
         </div>
       </div>
     </van-list>
-    <!-- <div class="backTop" @click="BackTop">
-      <van-icon name="back-top" /> -->
-    <!-- </div> -->
+    <!-- <el-backtop
+      target=".page-component__scroll .el-scrollbar__wrap"
+    ></el-backtop> -->
   </div>
 </template>
 
@@ -42,16 +47,11 @@ export default {
       loading: false,
       finished: false,
       page: 1,
-      // scrolltop: 0,
-      // btnflag: flase,
+      scrollTop: "",
+      goTopShow: false,
     };
   },
 
-  // async created() {},
-  mounted() {
-    window.onscroll = this.scrollToTop;
-    
-  },
   methods: {
     onLoad() {
       console.log("开始加载数据");
@@ -75,21 +75,18 @@ export default {
       // console.log(res.data);
       // console.log(res.data.list);
       // console.log(res.data.page);
-      this.page = res.data.page;
+      console.log(res.page);
+      this.page = res.page;
       if (this.page < 6) {
         this.page++;
       } else {
         this.finished = true;
       }
 
-      this.Mv = [...this.Mv, ...res.data.list];
+      this.Mv = [...this.Mv, ...res.list];
       this.loading = false;
     },
-
-    scrollToTop() {
-      console.log(document.documentElement.scrollTop);
-      console.log(111);
-    },
+   
   },
 };
 </script>
@@ -134,7 +131,7 @@ p {
   text-indent: 1rem;
   margin-top: 1rem;
 }
-.backTop {
+.goTop {
   width: 3rem;
   height: 3rem;
   background: cornflowerblue;
@@ -144,5 +141,12 @@ p {
   right: 2rem;
   text-align: center;
   line-height: 3rem;
+}
+.goTop:hover .goTopIcon {
+  color: rgba(51, 153, 255, 1);
+}
+.goTopIcon {
+  font-size: 20px;
+  color: rgba(51, 153, 255, 0.8);
 }
 </style>

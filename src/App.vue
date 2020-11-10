@@ -11,9 +11,7 @@
       <van-tabbar-item :to="{ name: 'Home' }" icon="home-o"
         >首页</van-tabbar-item
       >
-      <van-tabbar-item :to="{ name: 'Classify' }" icon="apps-o"
-        >影库</van-tabbar-item
-      >
+      <van-tabbar-item :to="{ name: 'Mv' }" icon="apps-o">影库</van-tabbar-item>
       <van-tabbar-item icon="video-o">详情</van-tabbar-item>
       <van-tabbar-item :to="{ name: 'User' }" icon="contact"
         >个人中心</van-tabbar-item
@@ -27,6 +25,12 @@ export default {
     return {
       active: 0,
     };
+  },
+  watch: {
+    $route(to) {
+      console.log(to);
+      this.active = to.meta.index;
+    },
   },
 };
 </script>
