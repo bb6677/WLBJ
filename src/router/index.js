@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import { isLogined } from "../utils/tools";
+import { isLogined } from "../utils/tools";
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,9 +28,7 @@ const routes = [
     path: "/collect",
     name: "Collect",
     component: () => import("../views/Collect.vue"),
-    // meta: {
-    //   needLogin: true, //访问时需要登录才能访问
-    // },
+   
   },
   {
     path: "/classify",
@@ -89,32 +87,25 @@ const routes = [
       needLogin: true, //访问时需要登录才能访问
     },
   },
-  // {
-  //   path: "/collect",
-  //   name: "Collect",
-  //   component: () => import("../views/Collect.vue"),
-  //   meta: {
-  //     needLogin: true, //访问时需要登录才能访问
-  //   },
-  // },
+  
 ];
 
 const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.needLogin) {
-//     if (isLogined()) {
-//       next();
-//     } else {
-//       next({
-//         name: "Login",
-//       });
-//     }
-//   } else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.meta.needLogin) {
+    if (isLogined()) {
+      next();
+    } else {
+      next({
+        name: "Login",
+      });
+    }
+  } else {
+    next();
+  }
+});
 
 export default router;

@@ -12,9 +12,9 @@ export function loadDetailAPI() {
  * @param {*} product
  * @param {*} quantity
  */
-export function addDetailAPI(product,quantity=1) {
+export function addDetailAPI(movie,id) {
   return post("/api/v1/user/collections", {
-    product,
-    quantity,
+    movie,
+    id,
   });
 }

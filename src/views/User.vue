@@ -46,7 +46,7 @@ export default {
     console.log(res);
     // res = res.data;
     this.user = res;
-    console.log(this.user.password);
+    console.log(res);
   },
   methods: {
     goBack() {

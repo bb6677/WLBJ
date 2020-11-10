@@ -3,7 +3,7 @@
   <div class="reg">
     <p>注册专属账号</p>
     <!-- logo图 -->
-    <img style="width:80%;" src="../assets/timg.jpg" alt="" />
+    <img style="width: 80%" src="../assets/timg.jpg" alt="" />
     <!-- 引入vant模板 -->
     <van-form @submit="onSubmit">
       <van-field
@@ -22,14 +22,15 @@
         placeholder="密码"
         :rules="[{ required: true, message: '请填写密码' }]"
       />
-  
+
       <van-field
         v-model="repwd"
         type="password"
         name="repwd"
         label="确认密码"
         placeholder="重新输入密码"
-        :rules="[{ required: true, message: '请填写密码' }]"/>
+        :rules="[{ required: true, message: '请填写密码' }]"
+      />
 
       <van-button round block type="info" native-type="submit">
         注册
@@ -63,8 +64,8 @@ export default {
         return;
       }
       console.log(values);
-      const res = await regAPI(values);
-      let u =res.data
+      const u = await regAPI(values);
+      // let u =res.data
       if (u.code === 1) {
         setToken(u.token);
         this.$router.push({
@@ -76,7 +77,7 @@ export default {
           message: u.info,
         });
       }
-       console.log(u);
+      console.log(u);
     },
   },
 };
@@ -90,7 +91,7 @@ export default {
   justify-content: center;
   background: rgb(213, 236, 229);
 }
-p{
+p {
   color: rgb(26, 209, 148);
   font-size: 20px;
 }
