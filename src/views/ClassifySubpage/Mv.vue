@@ -105,7 +105,7 @@ p {
 .dabox {
   flex: 1;
   display: flex;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   height: 10rem;
 }
 .box_left {

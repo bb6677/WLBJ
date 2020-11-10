@@ -24,6 +24,23 @@ const routes = [
     component: () => import("../views/Login.vue"),
   },
   {
+    path: "/hit",
+    name: "Hit",
+    component: () => import("../views/Hit.vue"),
+    children: [
+      {
+        path: "/re",
+        name: "Re",
+        component: () => import("../views/Rebo/Re.vue"),
+      },
+      {
+        path: "/release",
+        name: "Release",
+        component: () => import("../views/Rebo/Release.vue"),
+      },
+    ],
+  },
+  {
     path: "/details",
     name: "Details",
     component: () => import("../views/Details.vue"),

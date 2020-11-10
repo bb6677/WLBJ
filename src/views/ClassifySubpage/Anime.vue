@@ -91,7 +91,7 @@ p {
 .dabox {
   flex: 1;
   display: flex;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   height: 10rem;
 }
 .box_left {
@@ -114,7 +114,7 @@ p {
 }
 .box_right p {
   font-size: 0.7rem;
-  text-indent: 1rem;
+  text-indent: 0.5rem;
   margin-top: 1rem;
 }
 </style>
