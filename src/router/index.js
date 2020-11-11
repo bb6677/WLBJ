@@ -46,6 +46,12 @@ const routes = [
     component: () => import("../views/Details.vue"),
   },
   {
+    path: "/collect",
+    name: "Collect",
+    component: () => import("../views/Collect.vue"),
+   
+  },
+  {
     path: "/classify",
     name: "Classify",
     component: () => import("../views/Classify.vue"),
@@ -101,14 +107,7 @@ const routes = [
       needLogin: true, //访问时需要登录才能访问
     },
   },
-  {
-    path: "/collect",
-    name: "Collect",
-    component: () => import("../views/Collect.vue"),
-    meta: {
-      needLogin: true, //访问时需要登录才能访问
-    },
-  },
+  
 ];
 
 const router = new VueRouter({

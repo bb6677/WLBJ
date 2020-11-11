@@ -3,25 +3,14 @@
   <div class="reg">
     <p>请先登录</p>
     <!-- logo图 -->
-    <img style="width: 70%; margin:10px 0;" src="../assets/timg.jpg" alt=""  />
+    <img style="width: 70%; margin:10px 0;" src="../assets/timg.jpg" alt="" />
     <!-- 引入vant模板 -->
     <van-form @submit="onSubmit">
-      <van-field
-        v-model="username"
-        name="userName"
-        label="昵称"
-        placeholder="昵称"
-        :rules="[{ required: true, message: '请填写昵称' }]"
-      />
+      <van-field v-model="username" name="userName" label="用户名" placeholder="用户名"
+        :rules="[{ required: true, message: '请填写用户名' }]" />
 
-      <van-field
-        v-model="password"
-        type="password"
-        name="password"
-        label="密码"
-        placeholder="密码"
-        :rules="[{ required: true, message: '请填写密码' }]"
-      />
+      <van-field v-model="password" type="password" name="password" label="密码" placeholder="密码"
+        :rules="[{ required: true, message: '请填写密码' }]" />
       <div style="margin: 16px">
         <van-button round block type="info" native-type="submit" style="margin:10px 0; ">
           登录
@@ -39,24 +28,26 @@ import { Toast } from "vant";
 import { loginAPI } from "@/services/auth";
 import { setToken } from "@/utils/tools";
 export default {
-  data() {
+  data () {
     return {
       username: "",
       password: "",
     };
   },
   methods: {
-    async onSubmit(values) {
+    async onSubmit (values) {
       const u = await loginAPI(values);
       // let u = res.data;
+      console.log(values);
       if (u.code === 1) {
         setToken(u.token);
         Toast.success('登陆成功');
-        setTimeout(()=>{
-           this.$router.push({
-          name: "User",
-        });
-        },2000)
+        localStorage.setItem("pwd", this.password);
+        setTimeout(() => {
+          this.$router.push({
+            name: "User",
+          });
+        }, 2000)
       } else {
         Notify({
           type: "warning",

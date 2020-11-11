@@ -46,6 +46,14 @@ export default {
     onLoad() {
       this.loadData();
     },
+    go(id) {
+      this.$router.push({
+        name: "Details",
+        query: {
+          id: id,
+        },
+      });
+    },
     async loadData() {
       this.loading = true;
       const res = await AllClasstify({ category: 3, page: this.page });
@@ -59,14 +67,7 @@ export default {
       this.Tv = [...this.Tv, ...res.list];
       this.loading = false;
     },
-    go(id) {
-      this.$router.push({
-        name: "Details",
-        query: {
-          id: id,
-        },
-      });
-    },
+    
   },
 };
 </script>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { serverUrl } from "@/utils/tools";
 import { getToken } from "@/utils/tools";
-// import { removeToken } from "@/utils/tools";
+
 
 import { Notify } from "vant";
 
@@ -34,16 +34,7 @@ instance.interceptors.response.use(
         message: "网络不稳定，请刷新重试",
       });
     }
-    // if (error.response && error.response.status === 401) {
-    //   Notify({
-    //     type: "danger",
-    //     message: "用户信息异常",
-    //   });
-    //   removeToken(); // 清除原有的token
-    //   window.location.href = "/#/login";
-    // }
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
+    
     return Promise.reject(error);
   }
 );

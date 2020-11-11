@@ -2,30 +2,12 @@
   <div class="app">
     <van-cell to="/user" icon="arrow-left" />
     <van-form @submit="onSubmit">
-      <van-field
-        v-model="oldpassword"
-        name="oldPassword"
-        type="password"
-        label="原始密码"
-        placeholder="原始密码"
-        :rules="[{ required: true, message: '请填写原始密码' }]"
-      />
-      <van-field
-        v-model="newpassword"
-        type="password"
-        name="newPassword"
-        label="新密码"
-        placeholder="新密码"
-        :rules="[{ required: true, message: '请填写密码' }]"
-      />
-      <van-field
-        v-model="repwd"
-        type="password"
-        name="repwd"
-        label="确认密码"
-        placeholder="请再一次输入密码"
-        :rules="[{ required: true, message: '请填写密码' }]"
-      />
+      <van-field v-model="oldpassword" name="oldPassword" type="password" label="原始密码" placeholder="原始密码"
+        :rules="[{ required: true, message: '请填写原始密码' }]" />
+      <van-field v-model="newpassword" type="password" name="newPassword" label="新密码" placeholder="新密码"
+        :rules="[{ required: true, message: '请填写密码' }]" />
+      <van-field v-model="repwd" type="password" name="repwd" label="确认密码" placeholder="请再一次输入密码"
+        :rules="[{ required: true, message: '请填写密码' }]" />
       <div style="margin: 16px">
         <van-button round block type="info" native-type="submit">
           提交
@@ -39,7 +21,7 @@
 import { Notify } from "vant";
 import { keyAPI } from "@/services/auth";
 export default {
-  data() {
+  data () {
     return {
       oldpassword: "",
       newpassword: "",
@@ -47,8 +29,8 @@ export default {
     };
   },
   methods: {
-    async onSubmit() {
-      if (this.oldpassword != this.$route.query.pwd) {
+    async onSubmit () {
+      if (this.oldpassword != localStorage.getItem("pwd")) {
         Notify({
           type: "danger",
           message: "与旧密码不一致",
@@ -70,7 +52,7 @@ export default {
             type: "success",
             message: "修改成功",
           });
-          localStorage.setItem("pwd", this.newPassword);
+          localStorage.setItem("pwd", this.newpassword);
           this.$router.push({
             name: "User",
           });

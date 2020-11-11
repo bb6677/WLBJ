@@ -42,13 +42,18 @@
       </van-col>
       <!-- <van-col span="6">span: 6</van-col> -->
       <van-col span="6"
-        ><van-icon @click="buy(movie)" size="2rem" name="like"
+        ><van-icon
+          @click="buy(movie)"
+          :color="movie.isCollectioned ? 'red ' : '#000000'"
+          size="2rem"
+          name="like"
       /></van-col>
     </van-row>
 
     <div class="van-multi-ellipsis--l3" style="margin-top: 3rem">
       {{ movie.desc }}
     </div>
+    <van-card v-for="item in collec" :key="item.id" />
     <!-- <p>{{ movie.desc }}</p> -->
   </div>
 </template>
@@ -56,12 +61,17 @@
 <script>
 import { Toast } from "vant";
 import { get } from "@/utils/request.js";
-import { addDetailAPI } from "@/services/detail.js";
+import { del } from "@/utils/request.js";
+import { addDetailAPI, loadDetailAPI } from "@/services/detail.js";
 
 export default {
   data() {
     return {
-      movie: {},
+      movie: {
+        // isCollectioned:true
+      },
+      // isCollectioned: false,
+      collec: [],
     };
   },
   async created() {
@@ -70,35 +80,65 @@ export default {
         this.movie = res;
       });
     }
+    const res1 = await loadDetailAPI(); //获取收藏数据
+    console.log(res1);
+    res1.forEach((item) => {
+      if (item.movie.id == this.$route.query.id) {
+        this.movie.isCollectioned = true;
+        return;
+      }
+    });
+    console.log(this.isCollectioned);
+    // this.collec = res1;
+    // if (this.movie.id == this.item.movie.id) {
+    //   this.movie.isCollectioned = true;
+    // }
 
+    // if(like.indexOf(this.$route.query.id) > -1){
+    //   this.movie.isCollectioned = false; //颜色为黑
+    // }else{
+    //   this.movie.isCollectioned = true; //颜色为红
+    // }
     console.log(this.movie);
   },
   methods: {
     // eslint-disable-next-line no-unused-vars
     async buy(movie) {
-      console.log("加入收藏成功");
-      await addDetailAPI(movie.id);
-      Toast.success("加入收藏成功");
-    },
-  },
+      movie.isCollectioned = !movie.isCollectioned;
 
-  // watch: {
-  //   async $route() {
-  //     if (this.$route.query.id) {
-  //       const res = await axios.get(
-  //         "/api/v1/movies/:" +
-  //           this.$route.query.id
-  //       );
-  //       console.log(res.data);
-  //       this.movie = res.data.data.basic;
-  //     }
-  //   },
-  // },
+      // console.log(this.movie);
+      // console.log("加入收藏成功");
+      if (movie.isCollectioned) {
+        await addDetailAPI(movie.id);
+        Toast.success("加入收藏成功");
+
+        console.log(movie);
+      } else {
+        await del("/api/v1/user/collections/" + movie.id);
+        Toast.success("删除成功");
+      }
+    },
+
+    // watch: {
+    //   async $route() {
+    //     if (this.$route.query.id) {
+    //       const res = await axios.get(
+    //         "/api/v1/movies/:" +
+    //           this.$route.query.id
+    //       );
+    //       console.log(res.data);
+    //       this.movie = res.data.data.basic;
+    //     }
+    //   },
+  },
 };
 </script>
 
 <style scoped>
 .van-icon-arrow-left {
   width: 100%;
+}
+.van-icon van-icon-like {
+  color: red;
 }
 </style>
