@@ -26,8 +26,8 @@
       <!-- 轮播 -->
       <div class="banner">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-          <van-swipe-item v-for="item in Mv" :key="item.id">
-            <img :src="item.coverImage" />
+          <van-swipe-item v-for="item in banner" :key="item">
+            <img :src="item" />
           </van-swipe-item>
         </van-swipe>
       </div>
@@ -192,6 +192,9 @@ export default {
         "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=147680031,2968660845&fm=26&gp=0.jpg",
         "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1982976409,4170210720&fm=26&gp=0.jpg",
         "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1974636853,585963635&fm=26&gp=0.jpg",
+        "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2128382463,2719706569&fm=26&gp=0.jpg",
+        "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2698026931,2055987206&fm=26&gp=0.jpg",
+        "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3778808028,495682140&fm=26&gp=0.jpg",
       ],
       Mv: [],
       Anime: [],
@@ -278,7 +281,7 @@ header .Inp {
   margin-top: 0.35rem;
 }
 .Inp .input {
-  width: 9rem;
+  width: 80%;
   display: inline-block;
   font-size: 1rem;
   text-indent: 1rem;
@@ -292,7 +295,7 @@ header .Inp {
   color: gray;
 }
 .Inp p {
-  width: 3rem;
+  width: 20%;
   height: 2rem;
   color: #ffffff;
   font-weight: 500;
@@ -314,7 +317,7 @@ section {
 /* 轮播样式 */
 .my-swipe .van-swipe-item img {
   width: 100%;
-  height: 10rem;
+  height: 13rem;
 }
 /* 广告 */
 .Guanggao .notice-swipe {

@@ -7,9 +7,9 @@
         height="100px"
         src="https://img.yzcdn.cn/vant/cat.jpeg"
       />
+      <h1>欢迎回来{{ user.userName }}</h1>
     </div>
 
-    <h1>{{ user.userName }}</h1>
     <div class="content" route>
       <van-cell to="/collect" title="我的收藏" is-link icon="like" />
       <van-cell
