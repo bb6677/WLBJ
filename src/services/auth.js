@@ -20,3 +20,7 @@ export function keyAPI(user) {
 export function personAPI(user) {
   return put("/api/v1/users/change_pwd", user);
 }
+
+// export function removeCAPI() {
+//   return delete("/api/v1/user/collections/:id");
+// }

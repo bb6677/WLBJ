@@ -57,6 +57,14 @@ export default {
       console.log("开始加载数据");
       this.loadData();
     },
+    go(id) {
+      this.$router.push({
+        name: "Details",
+        query: {
+          id: id,
+        },
+      });
+    },
 
     /* 加载数据 */
 
@@ -78,14 +86,7 @@ export default {
       this.Mv = [...this.Mv, ...res.list];
       this.loading = false;
     },
-    go(id) {
-      this.$router.push({
-        name: "Details",
-        query: {
-          id: id,
-        },
-      });
-    },
+   
   },
 };
 </script>
