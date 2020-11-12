@@ -11,7 +11,7 @@
           <img :src="item.coverImage" />
         </div>
         <div class="box_right">
-          <h3>{{ item.name }}</h3>
+          <h3>{{ item.name.substr(item.name, 9) }}</h3>
           <van-rate
             class="XX"
             v-model="value"
