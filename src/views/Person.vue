@@ -25,7 +25,7 @@
           v-model="gender"
           autocomplete="off"
           type="gender"
-          name="性别"
+          name="gender"
           label="性别"
           placeholder="请填写您的性别"
           :rules="[{ required: true, message: '请填写您的性别' }]"
@@ -73,14 +73,14 @@ export default {
       return isJPG && isLt2M;
     },
     async onSubmit() {
-      console.log(this.nickName);
-      console.log(this.gender);
-      console.log(this.avatar);
       await personAPI({
         nickName: this.nickName,
         gender: this.gender,
         avatar: this.avatar,
       });
+      console.log(this.nickName);
+      console.log(this.gender);
+      console.log(this.avatar);
       setTimeout(() => {
         this.$router.push({
           name: "User",
@@ -91,9 +91,10 @@ export default {
   async created() {
     const res = await userInfoAPI();
     console.log(res);
-    this.nickName = res.userName;
-    this.gender = res.gender;
+    this.nickName = res.nickName;
+    this.gender = res.txt;
     this.avatar = res.avatar;
+    console.log(this.gender);
   },
 };
 </script>

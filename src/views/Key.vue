@@ -4,7 +4,7 @@
     <van-form @submit="onSubmit">
       <van-field
         v-model="oldpassword"
-        name="oldPassword"
+        name="oldpassword"
         type="password"
         label="原始密码"
         placeholder="原始密码"
@@ -13,7 +13,7 @@
       <van-field
         v-model="newpassword"
         type="password"
-        name="newPassword"
+        name="newpassword"
         label="新密码"
         placeholder="新密码"
         :rules="[{ required: true, message: '请填写密码' }]"
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      if (this.oldpassword != this.$route.query.pwd) {
+      if (this.oldpassword != localStorage.getItem("pwd")) {
         Notify({
           type: "danger",
           message: "与旧密码不一致",
@@ -70,7 +70,7 @@ export default {
             type: "success",
             message: "修改成功",
           });
-          localStorage.setItem("pwd", this.newPassword);
+          localStorage.setItem("pwd", this.newapssword);
           this.$router.push({
             name: "User",
           });
