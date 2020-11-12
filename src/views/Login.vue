@@ -9,9 +9,9 @@
       <van-field
         v-model="username"
         name="userName"
-        label="昵称"
-        placeholder="昵称"
-        :rules="[{ required: true, message: '请填写昵称' }]"
+        label="用户名"
+        placeholder="用户名"
+        :rules="[{ required: true, message: '请填写用户名' }]"
       />
 
       <van-field
@@ -57,6 +57,7 @@ export default {
     async onSubmit(values) {
       const u = await loginAPI(values);
       // let u = res.data;
+      console.log(values);
       if (u.code === 1) {
         setToken(u.token);
         Toast.success("登陆成功");
@@ -84,7 +85,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgb(213, 236, 229);
+  /* background: rgb(213, 236, 229); */
   border-radius: 5px 5px;
 }
 p {

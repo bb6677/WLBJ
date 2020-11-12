@@ -78,23 +78,24 @@ export default {
         gender: this.gender,
         avatar: this.avatar,
       });
-      console.log(this.nickName);
-      console.log(this.gender);
-      console.log(this.avatar);
       setTimeout(() => {
         this.$router.push({
           name: "User",
         });
       }, 2000);
+      console.log(this.nickName);
+      console.log(this.gender);
+      console.log(this.avatar);
     },
   },
   async created() {
     const res = await userInfoAPI();
     console.log(res);
-    this.nickName = res.nickName;
-    this.gender = res.txt;
+    this.nickName = res.userName;
+    this.gender = res.gender;
     this.avatar = res.avatar;
     console.log(this.gender);
+    // console.log(this.avatar);
   },
 };
 </script>

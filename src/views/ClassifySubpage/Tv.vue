@@ -67,7 +67,6 @@ export default {
       this.Tv = [...this.Tv, ...res.list];
       this.loading = false;
     },
-    
   },
 };
 </script>
@@ -78,7 +77,8 @@ p {
   padding: 0;
   margin: 0;
 }
-.Mv {
+.Tv {
+  margin-top: 2.6rem;
   display: flex;
   flex-direction: column;
 }

@@ -51,7 +51,7 @@ export default {
     onLoad() {
       this.loadData();
     },
-    
+
     async loadData() {
       this.loading = true;
       const res = await AllClasstify({ category: 2, page: this.page });
@@ -84,7 +84,8 @@ p {
   padding: 0;
   margin: 0;
 }
-.Mv {
+.Anime {
+  margin-top: 2.6rem;
   display: flex;
   flex-direction: column;
 }

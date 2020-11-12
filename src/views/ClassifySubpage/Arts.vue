@@ -82,7 +82,8 @@ p {
   padding: 0;
   margin: 0;
 }
-.Mv {
+.Arts {
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
 }

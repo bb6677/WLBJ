@@ -86,7 +86,6 @@ export default {
       this.Mv = [...this.Mv, ...res.list];
       this.loading = false;
     },
-   
   },
 };
 </script>
@@ -98,6 +97,7 @@ p {
   margin: 0;
 }
 .Mv {
+  margin-top: 2.6rem;
   display: flex;
   flex-direction: column;
   /* position: relative; */

@@ -5,9 +5,9 @@
         round
         width="100px"
         height="100px"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        :src="user.avatar | dalImg"
       />
-      <h1>欢迎回来!{{ user.userName }}</h1>
+      <h1>欢迎回来{{ user.userName }}</h1>
     </div>
 
     <div class="content" route>
@@ -28,7 +28,7 @@
 
 <script>
 import { userInfoAPI } from "@/services/auth";
-// import { removeToken } from "@/utils/tools";
+import { removeToken } from "@/utils/tools";
 export default {
   name: "User",
   data() {
@@ -39,16 +39,16 @@ export default {
   async created() {
     let res = await userInfoAPI();
     console.log(res);
-    // res = res.data;
+
     this.user = res;
-    console.log(res);
+    // console.log(this.user.password);
   },
   methods: {
     goBack() {
       this.$router.push({
         name: "Login",
       });
-      // removeToken();
+      removeToken();
     },
   },
 };

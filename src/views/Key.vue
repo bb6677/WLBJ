@@ -4,7 +4,7 @@
     <van-form @submit="onSubmit">
       <van-field
         v-model="oldpassword"
-        name="oldpassword"
+        name="oldPassword"
         type="password"
         label="原始密码"
         placeholder="原始密码"
@@ -13,7 +13,7 @@
       <van-field
         v-model="newpassword"
         type="password"
-        name="newpassword"
+        name="newPassword"
         label="新密码"
         placeholder="新密码"
         :rules="[{ required: true, message: '请填写密码' }]"
@@ -70,7 +70,7 @@ export default {
             type: "success",
             message: "修改成功",
           });
-          localStorage.setItem("pwd", this.newapssword);
+          localStorage.setItem("pwd", this.newpassword);
           this.$router.push({
             name: "User",
           });
