@@ -33,7 +33,7 @@
 
 <script>
 import { userInfoAPI } from "@/services/auth";
-// import { removeToken } from "@/utils/tools";
+import { removeToken } from "@/utils/tools";
 export default {
   name: "User",
   data() {
@@ -53,7 +53,7 @@ export default {
       this.$router.push({
         name: "Login",
       });
-      // removeToken();
+      removeToken();
     },
   },
 };

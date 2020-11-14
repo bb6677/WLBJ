@@ -2,7 +2,7 @@
   <!-- <h1>xiangq</h1> -->
 
   <div>
-    <van-row type="flex" justify="space-between" style="margin-top: 0.5rem">
+    <van-row type="flex" justify="space-between" style="margin-top: 0.5rem;">
       <van-col
         @click="$router.back(-1)"
         span="6"
@@ -63,6 +63,7 @@ import { Toast } from "vant";
 import { get } from "@/utils/request.js";
 import { del } from "@/utils/request.js";
 import { addDetailAPI, loadDetailAPI } from "@/services/detail.js";
+import { isLogined } from "@/utils/tools.js";
 
 export default {
   data() {
@@ -104,7 +105,11 @@ export default {
   methods: {
     // eslint-disable-next-line no-unused-vars
     async buy(movie) {
-      movie.isCollectioned = !movie.isCollectioned;
+      if(!isLogined()){
+        Toast.success("请先登录");
+
+      }else{
+         movie.isCollectioned = !movie.isCollectioned;
 
       // console.log(this.movie);
       // console.log("加入收藏成功");
@@ -117,6 +122,18 @@ export default {
         await del("/api/v1/user/collections/" + movie.id);
         Toast.success("删除成功");
       }
+      }
+
+
+     
+      // getToken();
+      // if (!localStorage.getItem("token")) {
+      //   Toast.fail("收藏失败请登录");
+      // }
+    
+      // if(Status==401){
+      //   Toast.fail("收藏失败请登录");
+      // }
     },
 
     // watch: {
@@ -135,10 +152,7 @@ export default {
 </script>
 
 <style scoped>
-.van-icon-arrow-left {
+/* .van-icon-arrow-left {
   width: 100%;
-}
-.van-icon van-icon-like {
-  color: red;
-}
+} */
 </style>
