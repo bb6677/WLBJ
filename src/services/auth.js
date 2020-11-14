@@ -1,4 +1,8 @@
-import { post, get ,put} from "@/utils/request";
+import {
+  post,
+  get,
+  put
+} from "@/utils/request";
 // import { get } from "core-js/fn/dict";
 
 export function regAPI(user) {
@@ -21,6 +25,6 @@ export function personAPI(user) {
   return put("/api/v1/users/change_pwd", user);
 }
 
-// export function removeCAPI() {
-//   return delete("/api/v1/user/collections/:id");
-// }
+export function imgAPI(img) {
+  return post('/api/v1/common/upload_file', img)
+}

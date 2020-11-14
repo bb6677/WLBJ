@@ -3,15 +3,15 @@
   <div class="reg">
     <p>请先登录</p>
     <!-- logo图 -->
-    <img style="width: 70%; margin:10px 0;" src="../assets/timg.jpg" alt=""  />
+    <img style="width: 70%; margin: 10px 0" src="../assets/timg.jpg" alt="" />
     <!-- 引入vant模板 -->
     <van-form @submit="onSubmit">
       <van-field
         v-model="username"
         name="userName"
-        label="昵称"
-        placeholder="昵称"
-        :rules="[{ required: true, message: '请填写昵称' }]"
+        label="用户名"
+        placeholder="用户名"
+        :rules="[{ required: true, message: '请填写用户名' }]"
       />
 
       <van-field
@@ -23,13 +23,21 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <div style="margin: 16px">
-        <van-button round block type="info" native-type="submit" style="margin:10px 0; ">
+        <van-button
+          round
+          block
+          type="info"
+          native-type="submit"
+          style="margin: 10px 0"
+        >
           登录
         </van-button>
       </div>
     </van-form>
     <!-- ：to=“” 跳转至相应的页面-->
-    <router-link style="margin:10px 0; " :to="{ name: 'Reg' }">没有账号请>注册</router-link>
+    <router-link style="margin: 10px 0" :to="{ name: 'Reg' }"
+      >没有账号请>注册</router-link
+    >
   </div>
 </template>
   
@@ -49,14 +57,16 @@ export default {
     async onSubmit(values) {
       const u = await loginAPI(values);
       // let u = res.data;
+      console.log(values);
       if (u.code === 1) {
         setToken(u.token);
-        Toast.success('登陆成功');
-        setTimeout(()=>{
-           this.$router.push({
-          name: "User",
-        });
-        },2000)
+        Toast.success("登陆成功");
+        localStorage.setItem("pwd", this.password);
+        setTimeout(() => {
+          this.$router.push({
+            name: "User",
+          });
+        }, 2000);
       } else {
         Notify({
           type: "warning",
@@ -75,7 +85,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgb(213, 236, 229);
+  /* background: rgb(213, 236, 229); */
   border-radius: 5px 5px;
 }
 p {

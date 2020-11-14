@@ -72,7 +72,7 @@
               @click="go(item.id)"
             >
               <img :src="item.coverImage | dalImg" />
-              <h4>{{ item.name }}</h4>
+              <h4>{{ item.name.substr(item.name, 7) }}</h4>
               <p>{{ item.desc }}</p>
             </div>
           </div>
@@ -95,7 +95,7 @@
               @click="go(item.id)"
             >
               <img :src="item.coverImage | dalImg" />
-              <h4>{{ item.name }}</h4>
+              <h4>{{ item.name.substr(item.name, 7) }}</h4>
               <p>{{ item.desc }}</p>
             </div>
           </div>
@@ -118,7 +118,7 @@
               @click="go(item.id)"
             >
               <img :src="item.coverImage | dalImg" />
-              <h4>{{ item.name }}</h4>
+              <h4>{{ item.name.substr(item.name, 7) }}</h4>
               <p>{{ item.desc }}</p>
             </div>
           </div>
@@ -343,7 +343,9 @@ section {
   /* width: 1000px; */
   display: flex;
   align-items: center;
+  justify-content: space-between;
   overflow-x: auto;
+  margin-top: 0.3rem;
 }
 .Dy {
   width: 7.5rem;
@@ -351,9 +353,9 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  margin: 0 0.14rem;
+  margin: 0 0.15rem;
 
   flex-shrink: 0;
 }

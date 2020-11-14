@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      if (this.oldpassword != this.$route.query.pwd) {
+      if (this.oldpassword != localStorage.getItem("pwd")) {
         Notify({
           type: "danger",
           message: "与旧密码不一致",
@@ -70,7 +70,7 @@ export default {
             type: "success",
             message: "修改成功",
           });
-          localStorage.setItem("pwd", this.newPassword);
+          localStorage.setItem("pwd", this.newpassword);
           this.$router.push({
             name: "User",
           });

@@ -1,7 +1,7 @@
 <template>
   <div class="Classify">
     <!-- 头部 -->
-    <div class="header">
+    <div class="header" style="position: fixed; width: 100%; z-index: 1000">
       <van-tabs v-model="active">
         <van-tab route :to="{ name: 'Mv' }" title="电影"> </van-tab>
         <van-tab :to="{ name: 'Anime' }" title="动漫"></van-tab>

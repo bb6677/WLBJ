@@ -5,7 +5,7 @@
         round
         width="100px"
         height="100px"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        :src="user.avatar | dalImg"
       />
       <h1>欢迎回来{{ user.userName }}</h1>
     </div>
@@ -17,12 +17,7 @@
         is-link
         icon="like"
       />
-      <van-cell
-        :to="{ name: 'Key', query: { pwd: $route.query.pwd } }"
-        title="修改密码"
-        is-link
-        icon="setting"
-      />
+      <van-cell :to="{ name: 'Key' }" title="修改密码" is-link icon="setting" />
       <van-cell to="/person" title="修改个人信息" is-link icon="setting" />
       <van-button type="danger" size="large" @click="goBack()"
         >退出登录</van-button
@@ -44,9 +39,9 @@ export default {
   async created() {
     let res = await userInfoAPI();
     console.log(res);
-    // res = res.data;
+
     this.user = res;
-    console.log(res);
+    // console.log(this.user.password);
   },
   methods: {
     goBack() {
